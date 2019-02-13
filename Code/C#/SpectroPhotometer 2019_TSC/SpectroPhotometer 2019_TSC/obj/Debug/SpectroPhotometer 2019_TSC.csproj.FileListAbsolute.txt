@@ -1,0 +1,10 @@
+C:\Users\killan\Universidad de Los Andes\Ana Lucia Campaña Perilla - 1 Nanothings\Espectro\Code\C#\SpectroPhotometer 2019_TSC\SpectroPhotometer 2019_TSC\bin\Debug\SpectroPhotometer 2019_TSC.exe.config
+C:\Users\killan\Universidad de Los Andes\Ana Lucia Campaña Perilla - 1 Nanothings\Espectro\Code\C#\SpectroPhotometer 2019_TSC\SpectroPhotometer 2019_TSC\bin\Debug\SpectroPhotometer 2019_TSC.exe
+C:\Users\killan\Universidad de Los Andes\Ana Lucia Campaña Perilla - 1 Nanothings\Espectro\Code\C#\SpectroPhotometer 2019_TSC\SpectroPhotometer 2019_TSC\bin\Debug\SpectroPhotometer 2019_TSC.pdb
+C:\Users\killan\Universidad de Los Andes\Ana Lucia Campaña Perilla - 1 Nanothings\Espectro\Code\C#\SpectroPhotometer 2019_TSC\SpectroPhotometer 2019_TSC\obj\Debug\SpectroPhotometer 2019_TSC.csprojAssemblyReference.cache
+C:\Users\killan\Universidad de Los Andes\Ana Lucia Campaña Perilla - 1 Nanothings\Espectro\Code\C#\SpectroPhotometer 2019_TSC\SpectroPhotometer 2019_TSC\obj\Debug\SpectroPhotometer_2019_TSC.Form1.resources
+C:\Users\killan\Universidad de Los Andes\Ana Lucia Campaña Perilla - 1 Nanothings\Espectro\Code\C#\SpectroPhotometer 2019_TSC\SpectroPhotometer 2019_TSC\obj\Debug\SpectroPhotometer_2019_TSC.Properties.Resources.resources
+C:\Users\killan\Universidad de Los Andes\Ana Lucia Campaña Perilla - 1 Nanothings\Espectro\Code\C#\SpectroPhotometer 2019_TSC\SpectroPhotometer 2019_TSC\obj\Debug\SpectroPhotometer 2019_TSC.csproj.GenerateResource.cache
+C:\Users\killan\Universidad de Los Andes\Ana Lucia Campaña Perilla - 1 Nanothings\Espectro\Code\C#\SpectroPhotometer 2019_TSC\SpectroPhotometer 2019_TSC\obj\Debug\SpectroPhotometer 2019_TSC.csproj.CoreCompileInputs.cache
+C:\Users\killan\Universidad de Los Andes\Ana Lucia Campaña Perilla - 1 Nanothings\Espectro\Code\C#\SpectroPhotometer 2019_TSC\SpectroPhotometer 2019_TSC\obj\Debug\SpectroPhotometer 2019_TSC.exe
+C:\Users\killan\Universidad de Los Andes\Ana Lucia Campaña Perilla - 1 Nanothings\Espectro\Code\C#\SpectroPhotometer 2019_TSC\SpectroPhotometer 2019_TSC\obj\Debug\SpectroPhotometer 2019_TSC.pdb
