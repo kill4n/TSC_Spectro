@@ -15,46 +15,60 @@ namespace SpectroPhotometer_2019_TSC
 {
     public partial class Form1 : Form
     {
-
-        // Variables declaration
-
-        private bool readEnabled;
-        StreamWriter sw;
-        List<double> mean = new List<double>();
-
+        #region Variable declarations
         /// <summary>
-        /// 
+        /// Variable for enable read
         /// </summary>
+        private bool readEnabled;
+        /// <summary>
+        /// Variable to write the text file
+        /// </summary>
+        StreamWriter sw;
+        /// <summary>
+        /// List to hold the values to create the mean
+        /// </summary>
+        List<double> mean = new List<double>();
+        #endregion
 
         public Form1()
         {
-            InitializeComponent();
-            refreshPorts();
-            serialPort1.DataReceived += SerialPort1_DataReceived;
+            InitializeComponent();                                  // Start Function, don't touch XD.
+            refreshPorts();                                         // Call function to refresh serial ports availables.
+            serialPort1.DataReceived += SerialPort1_DataReceived;   // Connect to a function activated when serial data recieved.
         }
 
+        /// <summary>
+        /// Funcion para recibir y procesar los datos.
+        /// </summary>
+        /// <param name="sender">Object that calls the function</param>
+        /// <param name="e">Arguments of function</param>
         private void SerialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            //Recibimos data
+            // Start Try - Catch block.
             try
             {
-                string linea = serialPort1.ReadLine();
-                int dato;
-                if (int.TryParse(linea, out dato) & readEnabled)
+                string linea = serialPort1.ReadLine();  // Read data from serial port until characters "\r\n".
+                int dato;   //Temporal variable to hold integer read value.
+                if (int.TryParse(linea, out dato) & readEnabled)    // Read data on 'linea' and store it un data, also validate readEnable variable.
                 {
-                    UpdateChart(dato);
+                    UpdateChart(dato);  // Call UpdateChar function
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) //Catch any exception, to prevent the program to exit with an error.
             {
 
             }
         }
 
+        /// <summary>
+        /// Method to thread safe Update text on textbox.
+        /// </summary>
+        /// <param name="dato">Value to update text</param>
         private void UpdateText(double dato)
         {
-            if (textBox1.InvokeRequired)
+            if (textBox1.InvokeRequired)    // Validate if textbox1 needs invocation.
             {
+                //Invocate textBox and call again the UpdateText function.
                 textBox1.Invoke(new Action(() =>
                 {
                     UpdateText(dato);
@@ -63,14 +77,19 @@ namespace SpectroPhotometer_2019_TSC
             }
             else
             {
-                textBox1.Text = dato.ToString();
+                textBox1.Text = dato.ToString(); // Update TextBox value.
             }
         }
 
+        /// <summary>
+        /// Method to safetly update chart
+        /// </summary>
+        /// <param name="dato"></param>
         private void UpdateChart(int dato)
         {
-            if (chart1.InvokeRequired)
+            if (chart1.InvokeRequired) // Validate if chart1 needs invocation.
             {
+                //Invocate chart and call again the UpdateChart function.
                 chart1.Invoke(new Action(() =>
                 {
                     UpdateChart(dato);
@@ -79,36 +98,38 @@ namespace SpectroPhotometer_2019_TSC
             }
             else
             {
-                mean.Add(dato);
-                if (mean.Count > 10)
-                    mean.RemoveAt(0);
-                double mMean = 0;
-                for (int i = 0; i < mean.Count; i++)
-                    mMean += mean[i];
+                mean.Add(dato);                                 // Add new value to mean List.
+                if (mean.Count > 10)                            // Check is mean list has more than 10 elements.
+                    mean.RemoveAt(0);                           // Remove extra value to always have max 10 values on list.
+                double mMean = 0;                               // Double variable to hold the mean.
+                for (int i = 0; i < mean.Count; i++)            // Loop over all the values of the mean list.
+                    mMean += mean[i];                           // Sum up all the values son list.
 
-                mMean = mMean / mean.Count;
-                UpdateText(mMean);
-                chart1.Series[0].Points.AddY(mMean);
-                if (chart1.Series[0].Points.Count > 100)
-                {
-                    chart1.Series[0].Points.RemoveAt(0);
-                }
-                chart1.ChartAreas[0].RecalculateAxesScale();
+                mMean = mMean / mean.Count;                     // Divide mMean over the number of elements of List to obtain the mean.
+                UpdateText(mMean);                              // Call UpdateText Method.
+                chart1.Series[0].Points.AddY(mMean);            // Add new value to the chart.
+                if (chart1.Series[0].Points.Count > 100)        // Check if chart has more than 100 points.
+                    chart1.Series[0].Points.RemoveAt(0);        // Remove first value to ensure always have max 100 values on chart.
+
+                chart1.ChartAreas[0].RecalculateAxesScale();    // Call Method to update the chart axis scale.
             }
 
         }
 
+        /// <summary>
+        /// Method to refresh available ports
+        /// </summary>
         private void refreshPorts()
         {
-            String[] puertos = SerialPort.GetPortNames();
-            cbxPorts.Items.Clear();
-            for (int i = 0; i < puertos.Length; i++)
+            string[] puertos = SerialPort.GetPortNames();       // Get all port names and store in puertos variable.
+            cbxPorts.Items.Clear();                             // Clear ports comboBox.
+            for (int i = 0; i < puertos.Length; i++)            // Loop over all availables ports.
             {
-                cbxPorts.Items.Add(puertos[i]);
-                cbxPorts.SelectedIndex = 0;
+                cbxPorts.Items.Add(puertos[i]);                 // Add one port to the ports comboBox
+                cbxPorts.SelectedIndex = 0;                     // Select the first item as default in the comboBox.
             }
 
-            lblStatus.Text = "Ports Found = " + puertos.Length;
+            lblStatus.Text = "Ports Found = " + puertos.Length; // Update status label
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
